@@ -12,6 +12,8 @@ function App() {
   const [userName, setUserName] = useState("John Doe");
   const { isLoading, fetchedImages } = useImageFetching("");
 
+  fetch("/api/images").then(console.log)
+
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

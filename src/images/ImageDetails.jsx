@@ -8,7 +8,7 @@ export function ImageDetails(props) {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const imageData = fetchedImages[0];
+  const imageData = fetchedImages.find(image => image.id === imageId);
   if (!imageData) {
     return (
       <div>
