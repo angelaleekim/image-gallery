@@ -8,8 +8,6 @@ export function RegisterPage({ onRegisterSuccess }) {
   const handleRegister = async (formData) => {
     const username = formData.get("username");
     const password = formData.get("password");
-    console.log("Register Username:", username);
-    console.log("Register Password:", password);
 
     try {
       const response = await sendPostRequest("/auth/register", {
@@ -21,7 +19,6 @@ export function RegisterPage({ onRegisterSuccess }) {
       }
       return response;
     } catch (error) {
-      console.log("Registration error:", error);
       return {
         type: "error",
         message: "User exists.",

@@ -10,8 +10,6 @@ export function LoginPage({ onLoginSuccess }) {
   const handleLogin = async (formData) => {
     const username = formData.get("username");
     const password = formData.get("password");
-    console.log("Login Username:", username);
-    console.log("Login Password:", password);
 
     try {
       const response = await sendPostRequest("/auth/login", {
@@ -23,7 +21,6 @@ export function LoginPage({ onLoginSuccess }) {
       }
       return response;
     } catch (error) {
-      console.log("Login error:", error);
       return {
         type: "error",
         message: "Server error. Please try again later.",

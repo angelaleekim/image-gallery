@@ -8,22 +8,14 @@ export async function sendPostRequest(url, payload) {
       body: JSON.stringify(payload),
     });
 
-    console.log(response.status);
-
-    if (response.status === 200) {
+    if (response.status === 200 || response.status === 201) {
       const data = await response.json();
-      console.log("Authentication Token:", data.token);
       return {
         type: "success",
-        message: "You have successfully logged in!",
-        token: data.token,
-      };
-    } else if (response.status === 201) {
-      const data = await response.json();
-      console.log("Authentication Token:", data.token);
-      return {
-        type: "success",
-        message: "You have successfully registered!",
+        message:
+          response.status === 200
+            ? "You have successfully logged in!"
+            : "You have successfully registered!",
         token: data.token,
       };
     } else if (response.status === 400) {
@@ -47,11 +39,9 @@ export async function sendPostRequest(url, payload) {
       throw new Error("Network response was not ok");
     }
 
-    // Check if the response body is empty
     const text = await response.text();
     return text ? JSON.parse(text) : {};
   } catch (error) {
-    console.error("There was a problem with the fetch operation:", error);
     throw error;
   }
 }

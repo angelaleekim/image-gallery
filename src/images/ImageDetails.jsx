@@ -3,12 +3,12 @@ import { useParams } from "react-router";
 
 export function ImageDetails(props) {
   const { imageId } = useParams();
-  const { isLoading, fetchedImages } = useImageFetching(imageId, 500);
+  const { isLoading, fetchedImages } = useImageFetching(props.authToken);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  const imageData = fetchedImages.find(image => image.id === imageId);
+  const imageData = fetchedImages.find((image) => image.id === imageId);
   if (!imageData) {
     return (
       <div>

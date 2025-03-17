@@ -1,9 +1,9 @@
 import { Navigate } from "react-router";
 
-export function ProtectedRoute(props) {
-  if (!props.authToken) {
+export function ProtectedRoute({ authToken, children }) {
+  if (!authToken) {
     return <Navigate to="/login" replace />;
   }
 
-  return props.children;
+  return children;
 }
